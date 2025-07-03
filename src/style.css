@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  flex-direction: column;
+}
+body.dark {
+  background: #121212;
+  color: #fff;
+}
+.container {
+  padding: 20px;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background: #808080; /* changed to grey */
+  color: #f0f0f0; /* lighter text */
+  padding-top: 60px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+.sidebar button, .sidebar label {
+  display: block;
+  background: none;
+  color: #f0f0f0; /* lighter text */
+  border: none;
+  margin: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+.hamburger {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  background: none;
+  border: none;
+  font-size: 32px; /* increased size */
+  cursor: pointer;
+  color: black; /* default light mode color */
+}
+
+/* Hamburger color in dark mode */
+body.dark .hamburger {
+  color: white;
+}
+button {
+  padding: 10px 15px;
+  margin: 5px 0;
+  transition: transform 0.2s ease;
+  align-self: center;
+}
+button:hover {
+  transform: scale(1.03);
+}
+input, select {
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .container {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 10px;
+    margin-top: 0;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: translateX(0);
+    padding-top: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #121212;
+  }
+  .sidebar button, .sidebar label {
+    margin: 5px;
+    font-size: 14px;
+    width: auto;
+    height: 50px;
+    background-color: #363636;
+    border-radius: 20px;
+    line-height: auto;
+    padding: 20px;
+  }
+
+  .sidebar label {
+    line-height: 50px;
+    padding: 5px;
+  }
+  .hamburger {
+    display: none; /* hide hamburger in mobile view */
+  }
+  body {
+    min-height: auto;
+    padding-top: 50px;
+  }
+}
+
+.sidebar button:hover, .sidebar label:hover {
+  border-radius: 4px;
+}
+
+/* Make .form-group fields wider */
+.form-group {
+  width: 100%;
+  max-width: 700px;
+  margin: 10px auto;
+  box-sizing: border-box;
+}

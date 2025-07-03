@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGPA Calculator</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <button onclick="toggleDarkMode()">  Dark Mode  </button>
+    <label for="importJson" class="import-label">  Import JSON  </label>
+    <input type="file" id="importJson" accept=".json" onchange="importDataJSON(event)" hidden/>
+    <button onclick="clearAllData()">  Clear All  </button>
+  </div>
+
+  <div class="container">
+    <h1>SGPA Calculator</h1>
+
+    <div class="form-group">
+      <label>Subject</label>
+      <select id="subjectDropdown" onchange="handleSubjectChange()">
+        <option value="">--Select--</option>
+        <option value="Physics">Physics</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="CPPS">CPPS</option>
+        <option value="ECE">ECE</option>
+        <option value="EGDT">EGDT</option>
+        <option value="Biology">Biology</option>
+        <option value="CTS">CTS</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Electrical Engineering">Electrical Engineering</option>
+        <option value="Mechanics">Mechanics</option>
+        <option value="Technical English">Technical English</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="internalGroup">
+      <label>Internal (out of 60)</label>
+      <input type="number" id="internalMarks" min="0" max="60">
+    </div>
+
+    <div class="form-group" id="finalGroup">
+      <label id="finalLabel">Final (out of 100)</label>
+      <input type="number" id="finalMarks" min="0" max="100">
+    </div>
+
+    <div class="form-group" id="totalGroup" style="display:none;">
+      <label>Total Marks (out of 100)</label>
+      <input type="number" id="totalMarks" min="0" max="100">
+    </div>
+
+    <div class="button-group">
+      <button id="addBtn" onclick="addSubject()">➕ Add Subject</button>
+      <button id="calcBtn" onclick="calculateSGPA()" style="display:none;">📊 Calculate SGPA</button>
+    </div>
+
+    <div class="button-group">
+      <button id="saveBtn" onclick="saveSemester()" style="display:none;">💾 Save Semester</button>
+    </div>
+
+    <div class="button-group" id="exportGroup" style="display:none;">
+      <button onclick="exportTable('pdf')">📄 Export PDF</button>
+      <button onclick="exportTable('excel')">📊 Export Excel</button>
+      <button onclick="exportDataJSON()">📁 Export JSON</button>
+    </div>
+
+    <table id="subjectsTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Credits</th>
+          <th>Total</th>
+          <th>GP</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="sgpaResult" class="result"></div>
+    <div id="cgpaResult" class="result"></div>
+  </div>
+
+  <script src="src/script.js"></script>
+</body>
+</html>
